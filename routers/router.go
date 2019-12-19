@@ -3,9 +3,6 @@ package routers
 import (
 	"log"
 
-	"github.com/facebookgo/inject"
-	"github.com/gin-gonic/gin"
-
 	"github.com/bingjian-zhu/gin-vue-admin/common/datasource"
 	"github.com/bingjian-zhu/gin-vue-admin/common/logger"
 	"github.com/bingjian-zhu/gin-vue-admin/common/middleware/cors"
@@ -14,15 +11,25 @@ import (
 	"github.com/bingjian-zhu/gin-vue-admin/controller"
 	"github.com/bingjian-zhu/gin-vue-admin/repository"
 	"github.com/bingjian-zhu/gin-vue-admin/service"
+	"github.com/facebookgo/inject"
+	"github.com/gin-gonic/gin"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	_ "github.com/swaggo/gin-swagger/example/basic/docs"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
-//InitRouter 初始化   Router..
+//InitRouter 初始化Router
 func InitRouter() *gin.Engine {
 	r := gin.New()
+
 	r.Use(gin.Logger())
 	r.Use(cors.CorsHandler())
 	r.Use(gin.Recovery())
 	gin.SetMode(setting.Config.APP.RunMode)
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	//url := ginSwagger.URL("http://localhost:8000/swagger/doc.json")
+	//r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 	Configure(r)
 	return r
 }
