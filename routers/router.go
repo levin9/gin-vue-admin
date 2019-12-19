@@ -16,7 +16,7 @@ import (
 	"github.com/bingjian-zhu/gin-vue-admin/service"
 )
 
-//InitRouter 初始化Router
+//InitRouter 初始化   Router..
 func InitRouter() *gin.Engine {
 	r := gin.New()
 	r.Use(gin.Logger())
