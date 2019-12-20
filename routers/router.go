@@ -93,7 +93,7 @@ func Configure(r *gin.Engine) {
 	{
 		//vue获取table信息
 		apiv1.GET("/table/list", article.GetArticles)
-		apiv1.GET("/user/list", user.GetUsers)
+		apiv1.GET("/user/list", user.GetUserList())
 		apiv1.POST("/user", user.AddUser)
 		apiv1.PUT("/user", user.UpdateUser)
 		apiv1.DELETE("/user/:id", user.DeleteUser)
