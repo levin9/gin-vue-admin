@@ -43,8 +43,17 @@ func (a *User) Logout(c *gin.Context) {
 	RespOk(c, http.StatusOK, codes.SUCCESS)
 }
 
-//GetUsers 获取用户信息
-func (a *User) GetUsers(c *gin.Context) {
+//GetUserList 获取用户信息
+// @Summary 获取用户信息
+// @Description 获取用户信息
+// @Tags 测试
+// @Accept mpfd
+// @Produce json
+// @Param name query string true "姓名"
+// @Success 200 {string} json "{"msg": ""}"
+// @Failure 400 {string} json "{"msg": "who are you"}"
+// @Router /GetUserList [get]
+func (a *User) GetUserList(c *gin.Context) {
 	var maps string
 	code := codes.SUCCESS
 	name := c.Query("name")
